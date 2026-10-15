@@ -1,3 +1,7 @@
+# Skills
+
+Agent skills for real engineering, bucketed under `skills/`, shipped two ways: the `mattpocock-skills` Claude Code plugin (the promoted set only) and the skills.sh installer (editable copies, any harness). This file is the working agreement for changing this repo; [README.md](./README.md) is the user-facing doc.
+
 Skills are organized into bucket folders under `skills/`:
 
 - `engineering/`: daily code work
@@ -23,3 +27,10 @@ Every `SKILL.md` is either user-invoked (`disable-model-invocation: true` plus `
 To (re)link every skill outside `deprecated/` and `misc/` into the local harness skill directories (`~/.claude/skills`, `~/.agents/skills`), run `scripts/link-skills.sh`. Each entry is a symlink into this repo, so a `git pull` keeps installed skills current; re-run the script after adding, removing, or renaming a skill.
 
 No em-dashes anywhere in this repo's prose (`SKILL.md` files, docs, `README.md`, `CHANGELOG.md`, ADRs, changesets, code comments). Where a sentence reaches for one, rewrite it instead with a comma, colon, period, parentheses, or a conjunction, whichever the sentence actually wants; never do a blind character substitution.
+
+## Commands
+
+- `npm run check-plugin-version`: exits 1 if `.claude-plugin/plugin.json`'s `version` has drifted from `package.json`'s. `npm run version` re-syncs it (`changeset version`, then `scripts/sync-plugin-version.mjs`).
+- `claude plugin validate . --strict`: validates `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` after you touch either.
+- `scripts/list-skills.sh`: prints every `SKILL.md` in the repo, sorted.
+- `scripts/link-skills.sh`: described above; rerun after adding, removing, or renaming a skill.
